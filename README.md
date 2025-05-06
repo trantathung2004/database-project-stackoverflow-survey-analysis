@@ -79,8 +79,11 @@ This project involves designing and implementing a comprehensive database system
   - GitHub Actions for CI/CD
 
 ### Team Members and Roles 
-- Tran Tat Hung
-- Dang Duc Dat 
+
+| Name          | Primary Role                      | Responsibilities                                                                                              |
+| ------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Tran Tat Hung | Project Lead & Database Developer | Project management, Database design & optimization, SQL queries & stored procedures, Backend API architecture |
+| Dang Duc Dat  | Full-Stack Developer              | Frontend implementation, Backend Python/FastAPI development, Data visualization, Integration & testing        |
 
 ### Timeline
 
