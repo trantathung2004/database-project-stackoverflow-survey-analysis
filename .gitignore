@@ -175,3 +175,4 @@ cython_debug/
 
 stack-overflow-developer-survey-2024
 .git
+.gitignore
