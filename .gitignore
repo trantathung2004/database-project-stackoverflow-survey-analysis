@@ -173,6 +173,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-stack-overflow-developer-survey-2024
 .git
 .gitignore
