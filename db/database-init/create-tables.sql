@@ -22,18 +22,20 @@ EdLevel VARCHAR(100)
 );
 
 -- Table: GroupQuestion
-drop table if exists groupquestion;
+drop table if exists `group`;
 CREATE TABLE `Group` (
 GID VARCHAR(100) PRIMARY KEY,
 GroupQuestionName VARCHAR(100) NOT NULL
 );
 
+drop table if exists answer;
 CREATE TABLE Answer (
 AnswerID INT PRIMARY KEY AUTO_INCREMENT,
 AnswerText TEXT NOT NULL
 );
 
 -- Table: Question_Answer
+drop table if exists Question_Answer;
 CREATE TABLE Question_Answer (
 QID INT,
 AnswerID INT,
@@ -41,6 +43,7 @@ PRIMARY KEY (QID, AnswerID)
 );
 
 -- Table: Responses
+drop table if exists Responses;
 CREATE TABLE Responses (
 ResponseID INT,
 QID INT,
