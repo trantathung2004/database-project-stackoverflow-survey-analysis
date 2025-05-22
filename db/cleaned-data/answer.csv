@@ -1,0 +1,422 @@
+answerid,answer
+1,I am a developer by profession
+2,I am learning to code
+3,I code primarily as a hobby
+4,"I am not primarily a developer, but I write code sometimes as part of my work/studies"
+5,"I used to be a developer by profession, but no longer am"
+6,Under 18 years old
+7,35-44 years old
+8,45-54 years old
+9,18-24 years old
+10,25-34 years old
+11,55-64 years old
+12,Prefer not to say
+13,65 years or older
+14,"Employed, full-time"
+15,"Student, full-time"
+16,"Not employed, but looking for work"
+17,"Independent contractor, freelancer, or self-employed"
+18,"Not employed, and not looking for work"
+19,"Student, part-time"
+20,"Employed, part-time"
+21,I prefer not to say
+22,Retired
+23,Primary/elementary school
+24,"Bachelor’s degree (B.A., B.S., B.Eng., etc.)"
+25,"Master’s degree (M.A., M.S., M.Eng., MBA, etc.)"
+26,Some college/university study without earning a degree
+27,"Secondary school (e.g. American high school, German Realschule or Gymnasium, etc.)"
+28,"Professional degree (JD, MD, Ph.D, Ed.D, etc.)"
+29,"Associate degree (A.A., A.S., etc.)"
+30,Something else
+31,United States of America
+32,United Kingdom of Great Britain and Northern Ireland
+33,Canada
+34,Norway
+35,Uzbekistan
+36,Serbia
+37,Poland
+38,Philippines
+39,Bulgaria
+40,Switzerland
+41,India
+42,Germany
+43,Ireland
+44,Italy
+45,Ukraine
+46,Australia
+47,Brazil
+48,Japan
+49,Austria
+50,"Iran, Islamic Republic of..."
+51,France
+52,Saudi Arabia
+53,Romania
+54,Turkey
+55,Nepal
+56,Algeria
+57,Sweden
+58,Netherlands
+59,Croatia
+60,Pakistan
+61,Czech Republic
+62,Republic of North Macedonia
+63,Finland
+64,Slovakia
+65,Russian Federation
+66,Greece
+67,Israel
+68,Belgium
+69,Mexico
+70,United Republic of Tanzania
+71,Hungary
+72,Argentina
+73,Portugal
+74,Sri Lanka
+75,Latvia
+76,China
+77,Singapore
+78,Lebanon
+79,Spain
+80,South Africa
+81,Lithuania
+82,Viet Nam
+83,Dominican Republic
+84,Indonesia
+85,Kosovo
+86,Morocco
+87,Taiwan
+88,Georgia
+89,San Marino
+90,Tunisia
+91,Bangladesh
+92,Nigeria
+93,Liechtenstein
+94,Denmark
+95,Ecuador
+96,Malaysia
+97,Albania
+98,Azerbaijan
+99,Chile
+100,Ghana
+101,Peru
+102,Bolivia
+103,Egypt
+104,Luxembourg
+105,Montenegro
+106,Cyprus
+107,Paraguay
+108,Kazakhstan
+109,Slovenia
+110,Jordan
+111,"Venezuela, Bolivarian Republic of..."
+112,Costa Rica
+113,Jamaica
+114,Thailand
+115,Nicaragua
+116,Myanmar
+117,Republic of Korea
+118,Rwanda
+119,Bosnia and Herzegovina
+120,Benin
+121,El Salvador
+122,Zimbabwe
+123,Afghanistan
+124,Estonia
+125,Malta
+126,Uruguay
+127,Belarus
+128,Colombia
+129,Republic of Moldova
+130,Isle of Man
+131,Nomadic
+132,New Zealand
+133,Palestine
+134,Armenia
+135,United Arab Emirates
+136,Maldives
+137,Ethiopia
+138,Fiji
+139,Guatemala
+140,Uganda
+141,Turkmenistan
+142,Mauritius
+143,Kenya
+144,Cuba
+145,Gabon
+146,Bahamas
+147,South Korea
+148,Iceland
+149,Honduras
+150,Hong Kong (S.A.R.)
+151,Lao People's Democratic Republic
+152,Mongolia
+153,Cambodia
+154,Madagascar
+155,Angola
+156,Democratic Republic of the Congo
+157,Syrian Arab Republic
+158,Iraq
+159,Namibia
+160,Senegal
+161,Kyrgyzstan
+162,Zambia
+163,Swaziland
+164,Côte d'Ivoire
+165,Kuwait
+166,Tajikistan
+167,Burundi
+168,Trinidad and Tobago
+169,Mauritania
+170,Sierra Leone
+171,Panama
+172,Somalia
+173,North Korea
+174,Dominica
+175,Guyana
+176,Togo
+177,Oman
+178,Barbados
+179,Andorra
+180,Democratic People's Republic of Korea
+181,Qatar
+182,Sudan
+183,Cameroon
+184,Papua New Guinea
+185,Bahrain
+186,Yemen
+187,Malawi
+188,Burkina Faso
+189,"Congo, Republic of the..."
+190,Botswana
+191,Guinea-Bissau
+192,Mozambique
+193,Central African Republic
+194,Equatorial Guinea
+195,Suriname
+196,Belize
+197,Libyan Arab Jamahiriya
+198,Cape Verde
+199,Brunei Darussalam
+200,Bhutan
+201,Guinea
+202,Niger
+203,Antigua and Barbuda
+204,Mali
+205,Samoa
+206,Lesotho
+207,Saint Kitts and Nevis
+208,Monaco
+209,"Micronesia, Federated States of..."
+210,Haiti
+211,Nauru
+212,Liberia
+213,Chad
+214,Djibouti
+215,Solomon Islands
+216,Yes
+217,"No, and I don't plan to"
+218,"No, but I plan to soon"
+219,Learning about a codebase
+220,Project planning
+221,Writing code
+222,Documenting code
+223,Debugging and getting help
+224,Deployment and monitoring
+225,Search for answers
+226,Generating content or synthetic data
+227,Testing code
+228,Committing and reviewing code
+229,Predictive analytics
+230,Other (please specify):
+231,No
+232,I'm not sure
+233,Books / Physical media
+234,Colleague
+235,On the job training
+236,"Other online resources (e.g., videos, blogs, forum, online community)"
+237,"School (i.e., University, College, etc)"
+238,Online Courses or Certification
+239,Coding Bootcamp
+240,Friend or family member
+241,Technical documentation
+242,Blogs
+243,Books
+244,Written Tutorials
+245,Stack Overflow
+246,Coding sessions (live or recorded)
+247,Social Media
+248,How-to videos
+249,Interactive tutorial
+250,Video-based Online Courses
+251,Written-based Online Courses
+252,AI
+253,Certification videos
+254,"Online challenges (e.g., daily or weekly coding challenges)"
+255,Programming Games
+256,Other (Please specify):
+257,"Auditory material (e.g., podcasts)"
+258,Bash/Shell (all shells)
+259,Go
+260,HTML/CSS
+261,Java
+262,JavaScript
+263,Python
+264,TypeScript
+265,C#
+266,C
+267,C++
+268,PHP
+269,PowerShell
+270,SQL
+271,Lua
+272,Rust
+273,Swift
+274,R
+275,Ruby
+276,Delphi
+277,VBA
+278,Visual Basic (.Net)
+279,F#
+280,Clojure
+281,Scala
+282,Perl
+283,MATLAB
+284,OCaml
+285,Assembly
+286,Dart
+287,Fortran
+288,Julia
+289,Crystal
+290,Kotlin
+291,Lisp
+292,Prolog
+293,Haskell
+294,Ada
+295,Elixir
+296,Erlang
+297,Groovy
+298,Zig
+299,GDScript
+300,MicroPython
+301,Objective-C
+302,Cobol
+303,Nim
+304,Apex
+305,Solidity
+306,Zephyr
+307,Dynamodb
+308,MongoDB
+309,PostgreSQL
+310,Firebase Realtime Database
+311,MySQL
+312,SQLite
+313,Cloud Firestore
+314,Supabase
+315,Redis
+316,Elasticsearch
+317,Microsoft Access
+318,Microsoft SQL Server
+319,MariaDB
+320,Oracle
+321,Snowflake
+322,Presto
+323,Databricks SQL
+324,DuckDB
+325,Cassandra
+326,H2
+327,Neo4J
+328,Cosmos DB
+329,BigQuery
+330,Firebird
+331,Clickhouse
+332,InfluxDB
+333,IBM DB2
+334,Solr
+335,EventStoreDB
+336,RavenDB
+337,Couch DB
+338,Cockroachdb
+339,Couchbase
+340,TiDB
+341,Datomic
+342,Amazon Web Services (AWS)
+343,Heroku
+344,Netlify
+345,Google Cloud
+346,Fly.io
+347,Cloudflare
+348,Firebase
+349,Vercel
+350,Digital Ocean
+351,Hetzner
+352,VMware
+353,Microsoft Azure
+354,Databricks
+355,Oracle Cloud Infrastructure (OCI)
+356,PythonAnywhere
+357,Render
+358,Managed Hosting
+359,OpenShift
+360,OVH
+361,IBM Cloud Or Watson
+362,Alibaba Cloud
+363,Vultr
+364,Colocation
+365,"Linode, now Akamai"
+366,Scaleway
+367,OpenStack
+368,Express
+369,Next.js
+370,Node.js
+371,React
+372,ASP.NET CORE
+373,jQuery
+374,WordPress
+375,Ruby on Rails
+376,ASP.NET
+377,CodeIgniter
+378,Blazor
+379,Django
+380,AngularJS
+381,Angular
+382,Flask
+383,NestJS
+384,FastAPI
+385,Spring Boot
+386,Vue.js
+387,Fastify
+388,Solid.js
+389,Laravel
+390,Htmx
+391,Deno
+392,Phoenix
+393,Remix
+394,Svelte
+395,Symfony
+396,Play Framework
+397,Drupal
+398,Elm
+399,Gatsby
+400,Nuxt.js
+401,Strapi
+402,Yii 2
+403,Astro
+404,MacOS
+405,Windows
+406,iOS
+407,Ubuntu
+408,Windows Subsystem for Linux (WSL)
+409,Red Hat
+410,Arch
+411,Other Linux-based
+412,ChromeOS
+413,Android
+414,iPadOS
+415,Debian
+416,Fedora
+417,Solaris
+418,AIX
+419,Cygwin
+420,BSD
+421,Haiku
