@@ -2,7 +2,7 @@
 SET foreign_key_checks = 0;
 
 drop table if exists question;
-CREATE TABLE Question (
+CREATE TABLE Questions (
   QID INT PRIMARY KEY AUTO_INCREMENT,
   qname VARCHAR(100) NOT NULL,
   question TEXT NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE Question (
 
 -- Table: Respondent
 drop table if exists respondent;
-CREATE TABLE Respondent (
+CREATE TABLE Respondents (
 ResponseID INT PRIMARY KEY AUTO_INCREMENT,
 MainBranch VARCHAR(100),
 Age VARCHAR(100),
@@ -23,13 +23,13 @@ EdLevel VARCHAR(100)
 
 -- Table: GroupQuestion
 drop table if exists `group`;
-CREATE TABLE `Group` (
+CREATE TABLE `GroupQuestions` (
 GID VARCHAR(100) PRIMARY KEY,
-GroupQuestionName VARCHAR(100) NOT NULL
+GroupQuestion VARCHAR(100) NOT NULL
 );
 
 drop table if exists answer;
-CREATE TABLE Answer (
+CREATE TABLE Answers (
 AnswerID INT PRIMARY KEY AUTO_INCREMENT,
 Answer TEXT NOT NULL
 );
@@ -46,8 +46,7 @@ PRIMARY KEY (QID, AnswerID)
 drop table if exists Responses;
 CREATE TABLE Responses (
 ResponseID INT,
-QID INT,
 AnswerID INT,
-qname VARCHAR(100),
-PRIMARY KEY (ResponseID, QID)
+QID INT,
+PRIMARY KEY (ResponseID, AnswerID, QID)
 );

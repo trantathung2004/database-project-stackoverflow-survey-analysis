@@ -10,7 +10,7 @@ id_answer = pd.read_csv('database/answer.csv')
 basic_questions = question_df.loc[question_df['GID']=='QID1', 'qname'].to_list()
 basic_questions.insert(0, 'ResponseId')
 basic_info = survey[basic_questions]
-basic_info.to_csv('cleaned-data/respondent.csv', index=False)
+basic_info.to_csv('cleaned-data/Respondents.csv', index=False)
 
 questions = question_df.loc[question_df['GID']!='QID1', 'qname'].to_list()
 questions.insert(0, 'ResponseId')
@@ -55,4 +55,4 @@ for question in questions:
                     'qid': question_df.loc[question_df['qname'] == question, 'qid'].values[0]
                 })
 
-pd.DataFrame(response_dict).to_csv('cleaned-data/responses.csv', index=False)
+pd.DataFrame(response_dict).to_csv('cleaned-data/Responses.csv', index=False)

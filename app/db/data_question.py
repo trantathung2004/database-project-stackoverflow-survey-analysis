@@ -51,6 +51,6 @@ qid_to_answer_df = pd.DataFrame([
     for qid in qid_to_answer.keys()
 ])
 qid_to_answer_df =  qid_to_answer_df.explode('answerid')
-answer_df.to_csv('cleaned-data/answer.csv', index=False)
-qid_to_answer_df.to_csv('cleaned-data/qid_answerid.csv', index=False)
+answer_df.to_csv('cleaned-data/Answers.csv', index=False)
+qid_to_answer_df.to_csv('cleaned-data/Question_Answer.csv', index=False)
 

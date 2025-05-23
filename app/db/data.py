@@ -40,7 +40,7 @@ if __name__ == "__main__":
     {'gid': qid, 'groupname': groupname}
     for groupname, qid in group_table.items()
 ])
-    g_table.to_csv('cleaned-data/group.csv', index=False)
+    g_table.to_csv('cleaned-data/GroupQuestion.csv', index=False)
 
     rows = []
     id = 0
@@ -62,5 +62,5 @@ if __name__ == "__main__":
     question_table = pd.DataFrame(rows)
     # Optional: Reset index if needed
     # question_table.reset_index(drop=True, inplace=True)
-    question_table.to_csv('cleaned-data/questions.csv', index=False) 
+    question_table.to_csv('cleaned-data/Questions.csv', index=False) 
 
