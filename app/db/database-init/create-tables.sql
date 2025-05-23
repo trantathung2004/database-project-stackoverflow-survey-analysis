@@ -1,4 +1,4 @@
-create database db_project;
+
 SET foreign_key_checks = 0;
 
 drop table if exists question;
