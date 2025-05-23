@@ -5,22 +5,17 @@ qid,qname,question,GID
 4,EdLevel,Which of the following best describes the highest level of formal education that you’ve completed? *,QID1
 5,Country,"Where do you live? <span style=""font-weight: bolder;"">*</span>",QID1
 6,AISelect,Do you currently use AI tools in your development process? *,QID319
-7,AIToolCurrently Using,What is A I Tool Currently  Using?,QID319
-8,AIToolNot interested in Using,What is A I Tool Not interested in  Using?,QID319
-9,AIThreat,Do you believe AI is a threat to your current job?,QID319
-10,LearnCode,How do you learn to code? Select all that apply.,QID276
-11,LearnCodeOnline,What online resources do you use to learn to code? Select all that apply.,QID276
-12,LanguageHaveWorkedWith,What is Language Have Worked With?,QID233
-13,LanguageWantToWorkWith,What is Language Want To Work With?,QID233
-14,LanguageAdmired,What is Language Admired?,QID233
-15,DatabaseHaveWorkedWith,What is Database Have Worked With?,QID262
-16,DatabaseWantToWorkWith,What is Database Want To Work With?,QID262
-17,DatabaseAdmired,What is Database Admired?,QID262
-18,PlatformHaveWorkedWith,What is Platform Have Worked With?,QID263
-19,PlatformWantToWorkWith,What is Platform Want To Work With?,QID263
-20,PlatformAdmired,What is Platform Admired?,QID263
-21,WebframeHaveWorkedWith,What is Webframe Have Worked With?,QID264
-22,WebframeWantToWorkWith,What is Webframe Want To Work With?,QID264
-23,WebframeAdmired,What is Webframe Admired?,QID264
-24,OpSysPersonal use,What is Op Sys Personal use?,QID71
-25,OpSysProfessional use,What is Op Sys Professional use?,QID71
+7,AIToolCurrently Using,What is AI Tool Currently  Using?,QID319
+8,AIThreat,Do you believe AI is a threat to your current job?,QID319
+9,LearnCode,How do you learn to code? Select all that apply.,QID276
+10,LearnCodeOnline,What online resources do you use to learn to code? Select all that apply.,QID276
+11,LanguageHaveWorkedWith,What is Language Have Worked With?,QID233
+12,LanguageWantToWorkWith,What is Language Want To Work With?,QID233
+13,DatabaseHaveWorkedWith,What is Database Have Worked With?,QID262
+14,DatabaseWantToWorkWith,What is Database Want To Work With?,QID262
+15,PlatformHaveWorkedWith,What is Platform Have Worked With?,QID263
+16,PlatformWantToWorkWith,What is Platform Want To Work With?,QID263
+17,WebframeHaveWorkedWith,What is Webframe Have Worked With?,QID264
+18,WebframeWantToWorkWith,What is Webframe Want To Work With?,QID264
+19,OpSysPersonal use,What is Op Sys Personal use?,QID71
+20,OpSysProfessional use,What is Op Sys Professional use?,QID71
