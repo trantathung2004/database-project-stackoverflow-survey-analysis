@@ -1,4 +1,4 @@
-answerid,answertext
+answerid,answer
 1,I am a developer by profession
 2,I am learning to code
 3,I code primarily as a hobby
@@ -340,83 +340,57 @@ answerid,answertext
 339,Couchbase
 340,TiDB
 341,Datomic
-342,Amazon Web Services (AWS)
-343,Heroku
-344,Netlify
-345,Google Cloud
-346,Fly.io
-347,Cloudflare
-348,Firebase
-349,Vercel
-350,Digital Ocean
-351,Hetzner
-352,VMware
-353,Microsoft Azure
-354,Databricks
-355,Oracle Cloud Infrastructure (OCI)
-356,PythonAnywhere
-357,Render
-358,Managed Hosting
-359,OpenShift
-360,OVH
-361,IBM Cloud Or Watson
-362,Alibaba Cloud
-363,Vultr
-364,Colocation
-365,"Linode, now Akamai"
-366,Scaleway
-367,OpenStack
-368,Express
-369,Next.js
-370,Node.js
-371,React
-372,ASP.NET CORE
-373,jQuery
-374,WordPress
-375,Ruby on Rails
-376,ASP.NET
-377,CodeIgniter
-378,Blazor
-379,Django
-380,AngularJS
-381,Angular
-382,Flask
-383,NestJS
-384,FastAPI
-385,Spring Boot
-386,Vue.js
-387,Fastify
-388,Solid.js
-389,Laravel
-390,Htmx
-391,Deno
-392,Phoenix
-393,Remix
-394,Svelte
-395,Symfony
-396,Play Framework
-397,Drupal
-398,Elm
-399,Gatsby
-400,Nuxt.js
-401,Strapi
-402,Yii 2
-403,Astro
-404,MacOS
-405,Windows
-406,iOS
-407,Ubuntu
-408,Windows Subsystem for Linux (WSL)
-409,Red Hat
-410,Arch
-411,Other Linux-based
-412,ChromeOS
-413,Android
-414,iPadOS
-415,Debian
-416,Fedora
-417,Solaris
-418,AIX
-419,Cygwin
-420,BSD
-421,Haiku
+342,Express
+343,Next.js
+344,Node.js
+345,React
+346,ASP.NET CORE
+347,jQuery
+348,WordPress
+349,Ruby on Rails
+350,ASP.NET
+351,CodeIgniter
+352,Blazor
+353,Django
+354,AngularJS
+355,Angular
+356,Flask
+357,NestJS
+358,FastAPI
+359,Spring Boot
+360,Vue.js
+361,Fastify
+362,Solid.js
+363,Laravel
+364,Htmx
+365,Deno
+366,Phoenix
+367,Remix
+368,Svelte
+369,Symfony
+370,Play Framework
+371,Drupal
+372,Elm
+373,Gatsby
+374,Nuxt.js
+375,Strapi
+376,Yii 2
+377,Astro
+378,MacOS
+379,Windows
+380,iOS
+381,Ubuntu
+382,Windows Subsystem for Linux (WSL)
+383,Red Hat
+384,Arch
+385,Other Linux-based
+386,ChromeOS
+387,Android
+388,iPadOS
+389,Debian
+390,Fedora
+391,Solaris
+392,AIX
+393,Cygwin
+394,BSD
+395,Haiku

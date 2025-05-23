@@ -31,7 +31,7 @@ GroupQuestionName VARCHAR(100) NOT NULL
 drop table if exists answer;
 CREATE TABLE Answer (
 AnswerID INT PRIMARY KEY AUTO_INCREMENT,
-AnswerText TEXT NOT NULL
+Answer TEXT NOT NULL
 );
 
 -- Table: Question_Answer

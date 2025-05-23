@@ -7,8 +7,8 @@ def generate_question_from_qname(qname: str) -> str:
     return f"What is {spaced}?"
 
 if __name__ == "__main__":
-    survey = pd.read_csv('data/survey_results_public.csv')
-    schema = pd.read_csv('data/survey_results_schema.csv')
+    survey = pd.read_csv('cleaned-data/survey_results_public.csv')
+    schema = pd.read_csv('cleaned-data/survey_results_schema.csv')
 
     survey_cols = survey.columns
     schema_qname = schema['qname']
@@ -20,14 +20,14 @@ if __name__ == "__main__":
     }
     # assign 'AITool', 'AISearchDev', 'AIThreat' these to AI
     # 'Basic Information': 
-    selected_group = [ 'LearnCode', 'Language', 'Database', 'Platform', 'Webframe', 'OpSys']
+    selected_group = [ 'LearnCode', 'Language', 'Database', 'Webframe', 'OpSys']
     group_table = {'Basic Information': 'QID1'}
     
     for group in selected_group:
         qid = schema.loc[schema['qname']==group, 'qid'].values[0]
         group_table[group] = qid
     group_table['AI'] = 'QID319'
-    question_FK = {'Basic Information': ['MainBranch', 'Age', 'Employment', 'EdLevel', 'Country'], 'AI': ['AISelect', 'AIToolCurrently Using', 'AIToolNot interested in Using', 'AIThreat']}
+    question_FK = {'Basic Information': ['MainBranch', 'Age', 'Employment', 'EdLevel', 'Country'], 'AI': ['AISelect', 'AIToolCurrently Using', 'AIThreat']}
     qnames = ['MainBranch', 'Age', 'Employment', 'EdLevel', 'Country', 'AISelect', 'AIToolCurrently Using', 'AIToolNot interested in Using', 'AIThreat']
     for group in group_table.keys():
         if group not in qname_dict.keys(): continue
@@ -48,8 +48,10 @@ if __name__ == "__main__":
         GID = group_table[groupname]
         for qname in qname_list:
             # print(qname in schema['qname'].tolist())
-            id += 1
             question_text = schema.loc[schema['qname']==qname, 'question'].values[0] if qname in schema['qname'].tolist() else generate_question_from_qname(qname)
+            if 'Admired' in question_text:
+                continue
+            id += 1
             rows.append({
                 'qid': id,
                 'qname': qname,
