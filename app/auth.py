@@ -14,7 +14,7 @@ router = APIRouter(
     tags=['auth']
 )
 
-SECRET_KEY = '8as7d98fh123h786asdf8786f78asd6f78sa68' 
+SECRET_KEY = '' 
 ALGORITHM = "HS256"
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
@@ -54,7 +54,9 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
                                  db: db_dependency):
     user = authenticate_user(form_data.username, form_data.password, db)
     if not user:
-        raise HTTPException(status_code=401)
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Wrong username or password')
+    token = create_access_token(user.username, user.ID)
+    return {'access_token': token, 'token_type': 'bearer'}
 
 def authenticate_user(username:str, password:str, db):
     user = db.query(Users).filter(Users.username == username).first()
@@ -64,5 +66,23 @@ def authenticate_user(username:str, password:str, db):
         return False
     return user
 
-def create_access_token():
-    pass
+def create_access_token(username, id):
+    encode = {'sub': username, 'id': id}
+    return jwt.encode(encode, SECRET_KEY, ALGORITHM)
+
+async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, ALGORITHM)
+        username = payload.get('sub')
+        uid = payload.get('id')
+        if username is None or uid is None:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Not Authorized')
+        return {'username': username, 'id': uid}
+    except JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not validate user.')
+    
+def get_user_role(username, db):
+    user = db.query(Users).filter(Users.username == username).first()
+    if user.role == 'admin':
+        return True
+    return False

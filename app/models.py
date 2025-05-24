@@ -9,3 +9,13 @@ class Users(Base):
     hashedpassword = Column(String(255))
     role = Column(String(5))
 
+class Questions(Base):
+    __tablename__ = 'Questions'
+
+    QID = Column(Integer, primary_key=True, index=True)
+    qname = Column(String(100), unique=True)
+    
+
+class Responses(Base):
+    __tablename__ = 'Responses'
+

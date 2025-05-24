@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import models
@@ -20,9 +20,6 @@ def get_chart(topic:str):
     #key qname, values [('answertext', %)]
     pass
 
-@app.get('/history')
-def history():
-    pass
 
 def get_db():
     db = SessionLocal()
@@ -32,13 +29,20 @@ def get_db():
         db.close()
 
 db_dependency = Annotated[Session, Depends(get_db)]
+user_dependency = Annotated[dict, Depends(auth.get_current_user)]
 
-@app.get('/auth',)
-def authenticate(user: None, db:db_dependency):
-    if user is None:
-        raise HTTPException(status_code=401, detail='Failed')
-    return {'User': user}
-
-@app.post('/register')
-def register():
+@app.post('/survey')
+def upload_survey():
     pass
+
+@app.get('/history')
+def history(user:user_dependency, db:db_dependency):
+    if not auth.get_user_role(user.username, db):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Failed')
+    survey_result = db.
+
+@app.get('/auth')
+def authenticate(user: user_dependency, db:db_dependency):
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Failed')
+    return {'User': user}
