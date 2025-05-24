@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from app import models
-from app.database import engine, SessionLocal
+import models
+from database import engine, SessionLocal
 from typing import Annotated
 from sqlalchemy.orm import Session
-from app import auth
-from app.charts import get_chart_data
-import json
+import auth
+from charts import get_chart_data
+from helper_history import *
 
 
 app = FastAPI()
@@ -22,6 +22,7 @@ def get_chart(topic: str):
         if not chart_data:
             raise HTTPException(status_code=404, detail=f"No data found for topic: {topic}")
         return JSONResponse(
+            status_code=status.HTTP_200_OK,
             content=chart_data,
             media_type="application/json",
             headers={"Content-Type": "application/json"}
@@ -46,9 +47,20 @@ def upload_survey():
 
 @app.get('/history')
 def history(user:user_dependency, db:db_dependency):
-    if not auth.get_user_role(user.username, db):
+    if not auth.get_user_role(user['username'], db):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Failed')
-    survey_result = db.
+    
+    query = text("""
+        SELECT * FROM v_history_response
+        LIMIT 100
+    """)
+    results = db.execute(query).mappings().all()
+    history =  [dict(row) for row in results]
+
+    return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content=history
+        )
 
 @app.get('/auth')
 def authenticate(user: user_dependency, db:db_dependency):

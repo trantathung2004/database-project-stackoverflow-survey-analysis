@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import jwt, JWTError
-from app.database import SessionLocal
-from app.models import Users
+from database import SessionLocal
+from models import Users
 
 router = APIRouter(
     prefix='/auth',
@@ -83,6 +83,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     
 def get_user_role(username, db):
     user = db.query(Users).filter(Users.username == username).first()
+    print(user.role)
     if user.role == 'admin':
         return True
     return False

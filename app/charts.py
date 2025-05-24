@@ -1,4 +1,4 @@
-from app.database import SessionLocal
+from database import SessionLocal
 from sqlalchemy import text
 from decimal import Decimal
 

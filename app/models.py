@@ -1,5 +1,5 @@
-from app.database import Base
-from sqlalchemy import Column, Integer, String
+from database import Base
+from sqlalchemy import Column, Integer, String, ForeignKey
 
 class Users(Base):
     __tablename__ = 'Users'
@@ -9,13 +9,20 @@ class Users(Base):
     hashedpassword = Column(String(255))
     role = Column(String(5))
 
-class Questions(Base):
-    __tablename__ = 'Questions'
 
-    QID = Column(Integer, primary_key=True, index=True)
-    qname = Column(String(100), unique=True)
-    
+class Respondent(Base):
+    __tablename__ = 'Respondents'
 
-class Responses(Base):
+    ResponseID = Column(Integer, primary_key=True, autoincrement=True)
+    MainBranch = Column(String(100))
+    Age = Column(String(100))
+    Country = Column(String(100))
+    Employment = Column(String(100))
+    EdLevel = Column(String(100))
+
+class Response(Base):
     __tablename__ = 'Responses'
 
+    ResponseID = Column(Integer, ForeignKey('Respondents.ResponseID'), primary_key=True)
+    AnswerID = Column(Integer, primary_key=True)
+    QID = Column(Integer, primary_key=True)
