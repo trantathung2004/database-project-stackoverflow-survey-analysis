@@ -177,3 +177,4 @@ env.yml
 data/survey_results_public.csv
 
 .vscode/
+db_project.session.sql

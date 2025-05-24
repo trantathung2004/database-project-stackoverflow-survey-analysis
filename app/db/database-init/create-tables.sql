@@ -1,7 +1,8 @@
+use db_project;
 
 SET foreign_key_checks = 0;
 
-drop table if exists question;
+drop table if exists questions;
 CREATE TABLE Questions (
   QID INT PRIMARY KEY AUTO_INCREMENT,
   qname VARCHAR(100) NOT NULL,
@@ -11,7 +12,7 @@ CREATE TABLE Questions (
 );
 
 -- Table: Respondent
-drop table if exists respondent;
+drop table if exists respondents;
 CREATE TABLE Respondents (
 ResponseID INT PRIMARY KEY AUTO_INCREMENT,
 MainBranch VARCHAR(100),
@@ -22,13 +23,13 @@ EdLevel VARCHAR(100)
 );
 
 -- Table: GroupQuestion
-drop table if exists `group`;
+drop table if exists `GroupQuestions`;
 CREATE TABLE `GroupQuestions` (
 GID VARCHAR(100) PRIMARY KEY,
 GroupQuestion VARCHAR(100) NOT NULL
 );
 
-drop table if exists answer;
+drop table if exists answers;
 CREATE TABLE Answers (
 AnswerID INT PRIMARY KEY AUTO_INCREMENT,
 Answer TEXT NOT NULL
