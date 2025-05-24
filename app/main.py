@@ -5,9 +5,9 @@ import models
 from database import engine, SessionLocal
 from typing import Annotated
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 import auth
 from charts import get_chart_data
-from helper_history import *
 
 
 app = FastAPI()
