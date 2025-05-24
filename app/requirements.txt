@@ -2,3 +2,7 @@ python-jose[cryptography]
 sqlalchemy
 passlib[bcrypt]
 pymysql
+fastapi
+uvicorn
+python-dotenv
+python-multipart
