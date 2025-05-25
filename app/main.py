@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import models
 from database import engine, SessionLocal
 from typing import Annotated, Dict, List, Tuple
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 import auth

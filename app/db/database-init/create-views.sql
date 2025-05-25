@@ -34,7 +34,8 @@ LEFT JOIN Responses rs ON r.ResponseID = rs.ResponseID
 LEFT JOIN Answers a ON a.AnswerID = rs.AnswerID
 LEFT JOIN Questions q ON q.QID = rs.QID
 GROUP BY r.ResponseID
-LIMIT 100;
+LIMIT 100
+ORDER BY r.ResponseID DESC;
 
 
 # Respondents' Demographic

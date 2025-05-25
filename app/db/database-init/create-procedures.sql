@@ -42,3 +42,31 @@ BEGIN
 END //
 
 DELIMITER ; 
+
+DELIMITER $$
+
+CREATE PROCEDURE InsertRespondentWithResponse (
+    IN p_MainBranch VARCHAR(100),
+    IN p_Age VARCHAR(100),
+    IN p_Country VARCHAR(100),
+    IN p_Employment VARCHAR(100),
+    IN p_EdLevel VARCHAR(100),
+    IN p_AnswerID INT,
+    IN p_QID INT
+)
+BEGIN
+    DECLARE last_id INT;
+
+    -- Insert into Respondents
+    INSERT INTO Respondents (MainBranch, Age, Country, Employment, EdLevel)
+    VALUES (p_MainBranch, p_Age, p_Country, p_Employment, p_EdLevel);
+
+    -- Get the inserted ResponseID (primary key)
+    SET last_id = LAST_INSERT_ID();
+
+    -- Insert into Responses
+    INSERT INTO Responses (ResponseID, AnswerID, QID)
+    VALUES (last_id, p_AnswerID, p_QID);
+END$$
+
+DELIMITER ;
