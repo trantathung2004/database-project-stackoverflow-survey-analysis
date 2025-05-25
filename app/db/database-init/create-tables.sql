@@ -17,9 +17,9 @@ CREATE TABLE Respondents (
 ResponseID INT PRIMARY KEY AUTO_INCREMENT,
 MainBranch VARCHAR(100),
 Age VARCHAR(100),
-Country VARCHAR(100),
 Employment VARCHAR(100),
-EdLevel VARCHAR(100)
+EdLevel VARCHAR(100),
+Country VARCHAR(100)
 );
 
 -- Table: GroupQuestion
