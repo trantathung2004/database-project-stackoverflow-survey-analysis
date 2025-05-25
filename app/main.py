@@ -70,9 +70,47 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(auth.get_current_user)]
 
-@app.post('/survey')
-def upload_survey():
-    pass
+@app.post('/upload')
+def upload_survey(user: user_dependency, response: models.RespondentCreate, db: db_dependency):
+    try:
+        respondent = models.Respondent(
+            MainBranch=response.MainBranch,
+            Age=response.Age,
+            Country=response.Country,
+            Employment=response.Employment,
+            EdLevel=response.EdLevel
+        )
+        db.add(respondent)
+        db.commit()
+        db.refresh(respondent)
+
+        for item in response.answers:
+            question = db.query(models.Questions).filter_by(qname=item.qname).first()
+            answer = db.query(models.Answers).filter_by(Answer=item.answer_text).first()
+
+            if not question or not answer:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Invalid qname or answer: {item.qname} - {item.answer_text}"
+                )
+
+            new_response = models.Responses(
+                ResponseID=respondent.ResponseID,
+                QID=question.QID,
+                AnswerID=answer.AnswerID
+            )
+            db.add(new_response)
+
+        db.commit()
+
+        return JSONResponse(status_code=status.HTTP_200_OK)
+
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
+        )
 
 @app.get('/history')
 def history(user:user_dependency, db:db_dependency):
