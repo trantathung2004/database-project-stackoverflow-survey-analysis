@@ -48,7 +48,7 @@ def upload_survey():
 @app.get('/history')
 def history(user:user_dependency, db:db_dependency):
     if not auth.get_user_role(user['username'], db):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Failed')
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='User is not authorized to access this')
     
     query = text("""
         SELECT * FROM v_history_response

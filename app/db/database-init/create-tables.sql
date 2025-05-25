@@ -51,3 +51,8 @@ AnswerID INT,
 QID INT,
 PRIMARY KEY (ResponseID, AnswerID, QID)
 );
+
+drop table if exists Users
+CREATE TABLE Users (
+  
+)
