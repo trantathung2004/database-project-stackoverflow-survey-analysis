@@ -1,16 +1,27 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.middleware.cors import CORSMiddleware
 import models
 from database import engine, SessionLocal
-from typing import Annotated
+from typing import Annotated, Dict, List, Tuple
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 import auth
-from charts import get_chart_data
+from charts import get_chart_data, get_age_group_stats
 
 
 app = FastAPI()
+
+# CORS middleware configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 app.include_router(auth.router)
 
 models.Base.metadata.create_all(bind=engine)
@@ -30,6 +41,23 @@ def get_chart(topic: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/age-stats/{question_id}")
+def get_age_stats(question_id: int):
+    """
+    Get age-based statistics for a specific question
+    """
+    try:
+        age_stats = get_age_group_stats(question_id)
+        if not age_stats:
+            raise HTTPException(status_code=404, detail=f"No data found for question ID: {question_id}")
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content=age_stats,
+            media_type="application/json",
+            headers={"Content-Type": "application/json"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 def get_db():
     db = SessionLocal()

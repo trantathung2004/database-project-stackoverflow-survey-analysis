@@ -47,3 +47,33 @@ def get_chart_data(topic: str) -> dict:
         return chart_data
     finally:
         db.close()
+
+def get_age_group_stats(question_id: int) -> dict:
+    """
+    Get statistics for a specific question broken down by age groups
+    Returns a dictionary where:
+    - key: age group
+    - value: list of tuples (answer, response_count, percentage)
+    """
+    db = SessionLocal()
+    try:
+        # Call the stored procedure
+        query = text("CALL GetQuestionStatsByAgeGroup(:question_id)")
+        results = db.execute(query, {"question_id": question_id}).fetchall()
+        
+        # Group the results by age group
+        age_stats = {}
+        for row in results:
+            if row.age_group not in age_stats:
+                age_stats[row.age_group] = []
+            # Convert Decimal to float
+            percentage = float(row.percentage) if isinstance(row.percentage, Decimal) else row.percentage
+            age_stats[row.age_group].append({
+                'answer': row.Answer,
+                'count': row.response_count,
+                'percentage': percentage
+            })
+        
+        return age_stats
+    finally:
+        db.close()
