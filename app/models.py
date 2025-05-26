@@ -12,7 +12,7 @@ class Users(Base):
     role = Column(String(5))
 
 
-class Respondent(Base):
+class Respondents(Base):
     __tablename__ = 'Respondents'
 
     ResponseID = Column(Integer, primary_key=True, autoincrement=True)
@@ -21,8 +21,9 @@ class Respondent(Base):
     Country = Column(String(100))
     Employment = Column(String(100))
     EdLevel = Column(String(100))
+    UID = Column(Integer)
 
-class Response(Base):
+class Responses(Base):
     __tablename__ = 'Responses'
 
     ResponseID = Column(Integer, ForeignKey('Respondents.ResponseID'), primary_key=True)
@@ -49,20 +50,24 @@ class Answers(Base):
 
 class RespondentCreate(BaseModel):
     Age: Optional[str]
-    Country: Optional[str]
+    Country: Optional[str] 
     EdLevel: Optional[str]
     Employment: Optional[str]
     MainBranch: Optional[str]
-    LanguageHaveWorkedWith: Optional[str]
-    LanguageWantToWorkWith: Optional[str]
-    DatabaseHaveWorkedWith: Optional[str]
-    DatabaseWantToWorkWith: Optional[str]
-    WebframeHaveWorkedWith: Optional[str]
-    WebframeWantToWorkWith: Optional[str]
-    LearnCode: Optional[str]
-    LearnCodeOnline: Optional[str]
-    AISelect: Optional[str]
-    AIThreat: Optional[str]
-    AIToolCurrently_Using: Optional[str]
-    OpSysPersonal_use: Optional[str]
-    OpSysProfessional_use: Optional[str]
+    LanguageHaveWorkedWith: Optional[str] = None
+    LanguageWantToWorkWith: Optional[str] = None
+    DatabaseHaveWorkedWith: Optional[str] = None
+    DatabaseWantToWorkWith: Optional[str] = None
+    WebframeHaveWorkedWith: Optional[str] = None
+    WebframeWantToWorkWith: Optional[str] = None
+    LearnCode: Optional[str] = None
+    LearnCodeOnline: Optional[str] = None
+    AISelect: Optional[str] = None
+    AIThreat: Optional[str] = None
+    AIToolCurrentlyUsing: Optional[str] = None
+    OpSysPersonalUse: Optional[str] = None
+    OpSysProfessionalUse: Optional[str] = None
+
+class UpdateAnswerRequest(BaseModel):
+    qname: str
+    new_answer: str

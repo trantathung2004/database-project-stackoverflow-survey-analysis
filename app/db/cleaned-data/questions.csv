@@ -5,7 +5,7 @@ QID,qname,question,GID
 4,EdLevel,Which of the following best describes the highest level of formal education that you’ve completed? *,QID1
 5,Country,"Where do you live? <span style=""font-weight: bolder;"">*</span>",QID1
 6,AISelect,Do you currently use AI tools in your development process? *,QID319
-7,AIToolCurrently Using,What is A I Tool Currently  Using?,QID319
+7,AIToolCurrentlyUsing,What is A I Tool Currently  Using?,QID319
 8,AIThreat,Do you believe AI is a threat to your current job?,QID319
 9,LearnCode,How do you learn to code? Select all that apply.,QID276
 10,LearnCodeOnline,What online resources do you use to learn to code? Select all that apply.,QID276
@@ -15,5 +15,5 @@ QID,qname,question,GID
 14,DatabaseWantToWorkWith,What is Database Want To Work With?,QID262
 15,WebframeHaveWorkedWith,What is Webframe Have Worked With?,QID264
 16,WebframeWantToWorkWith,What is Webframe Want To Work With?,QID264
-17,OpSysPersonal use,What is Op Sys Personal use?,QID71
-18,OpSysProfessional use,What is Op Sys Professional use?,QID71
+17,OpSysPersonalUse,What is Op Sys Personal use?,QID71
+18,OpSysProfessionalUse,What is Op Sys Professional use?,QID71

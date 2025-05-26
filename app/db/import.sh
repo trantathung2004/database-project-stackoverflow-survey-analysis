@@ -1,15 +1,17 @@
 #!/bin/bash
 
 USER="root"
-PASSWORD="root"
 DB="db_project"
+PASSWORD="dat231259"  # or leave blank to be prompted
 
-for file in /docker-entrypoint-initdb.d/cleaned-data/*.csv; do
+for file in cleaned-data/*.csv; do
   table=$(basename "$file" .csv)
-  echo "Importing $file into table $table..."
+  abs_path=$(realpath "$file")
   
+  echo "Importing $abs_path into table $table..."
+
   mysql --local-infile=1 -u"$USER" -p"$PASSWORD" "$DB" -e "
-    LOAD DATA LOCAL INFILE '$file'
+    LOAD DATA LOCAL INFILE '$abs_path'
     INTO TABLE $table
     FIELDS TERMINATED BY ','
     ENCLOSED BY '\"'

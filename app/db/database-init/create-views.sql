@@ -21,6 +21,7 @@ r.Age,
 r.Employment,
 r.Country,
 r.EdLevel,
+r.UID,
 GROUP_CONCAT(CASE WHEN q.qname = 'LanguageWorkedWith' THEN a.Answer END SEPARATOR ';') AS LanguageWorkedWith,
 GROUP_CONCAT(CASE WHEN q.qname = 'LanguageWantToWorkWith' THEN a.Answer END SEPARATOR ';') AS LanguageWantToWorkWith,
 GROUP_CONCAT(CASE WHEN q.qname = 'AISelect' THEN a.Answer END SEPARATOR ';') AS AISelect,
@@ -33,9 +34,7 @@ FROM Respondents r
 LEFT JOIN Responses rs ON r.ResponseID = rs.ResponseID
 LEFT JOIN Answers a ON a.AnswerID = rs.AnswerID
 LEFT JOIN Questions q ON q.QID = rs.QID
-GROUP BY r.ResponseID
-LIMIT 100
-ORDER BY r.ResponseID DESC;
+GROUP BY r.ResponseID;
 
 
 # Respondents' Demographic

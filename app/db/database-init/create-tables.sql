@@ -19,7 +19,8 @@ MainBranch VARCHAR(100),
 Age VARCHAR(100),
 Employment VARCHAR(100),
 EdLevel VARCHAR(100),
-Country VARCHAR(100)
+Country VARCHAR(100),
+`UID` INT,
 );
 
 -- Table: GroupQuestion
@@ -54,5 +55,8 @@ PRIMARY KEY (ResponseID, AnswerID, QID)
 
 drop table if exists Users
 CREATE TABLE Users (
-  
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    hashedpassword VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'user'
 )
