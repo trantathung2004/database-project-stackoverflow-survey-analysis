@@ -1,6 +1,6 @@
 use db_project;
 
-# Overall Question Result Summary
+-- Overall Question Result Summary
 CREATE VIEW v_question_summary AS
 SELECT
 	q.QID,
@@ -43,7 +43,7 @@ LEFT JOIN Questions q ON q.QID = rs.QID
 GROUP BY r.ResponseID;
 
 
-# Respondents' Demographic
+--  Respondents' Demographic
 CREATE VIEW v_respondent_summary AS
 SELECT
 	Country,

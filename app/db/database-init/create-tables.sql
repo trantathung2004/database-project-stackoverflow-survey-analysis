@@ -20,7 +20,7 @@ Age VARCHAR(100),
 Employment VARCHAR(100),
 EdLevel VARCHAR(100),
 Country VARCHAR(100),
-`UID` INT,
+`UID` INT
 );
 
 -- Table: GroupQuestion
@@ -53,7 +53,7 @@ QID INT,
 PRIMARY KEY (ResponseID, AnswerID, QID)
 );
 
-drop table if exists Users
+drop table if exists Users;
 CREATE TABLE Users (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
