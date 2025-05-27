@@ -1,96 +1,113 @@
 # COMP3030 - Database and Database Systems - Project
-## Stackoverflow Developer Survey Analysis
+## Stack Overflow Survey Analysis Backend
 
-### Project Description
+This is the backend service for the Stack Overflow Survey Analysis project. It provides a FastAPI-based REST API with MySQL database integration.
 
-This project involves designing and implementing a comprehensive database system to store, analyze, and visualize responses from the Stack Overflow Annual Developer Survey. Our solution will provide an interactive platform for exploring developer trends, demographics, technology preferences, and career insights. The database will serve as the foundation for a web-based interface that allows users to filter, compare, and visualize survey data through dynamic charts and reports. By effectively organizing and normalizing the extensive survey dataset, we aim to create a robust system that enables meaningful insights into the global developer community while demonstrating advanced database design and implementation techniques.
+### Prerequisites
 
-### Functional Requirements
+- Docker and Docker Compose installed on your system
+- Git (for cloning the repository)
 
-- Database Management:
-  - Store and manage all survey data in normalized relational tables.
-  - Implement views to support frequently used query patterns.
-  - Set up triggers to maintain data integrity and enable audit trails.
-  - Optimize performance using indexing and partitioning strategies.
+### Environment Setup
 
-- Web Application Features:
-  - Develop a responsive web interface that supports full CRUD (Create, Read, Update, Delete) operations for relevant entities.
-  - Enable users to filter, search, and explore data in real time.
-  - Provide dashboards for statistical summaries and visualizations using charts and graphs.
+1. Create a `.env` file in the `app` directory with the following variables:
+```env
+MYSQL_ROOT_PASSWORD=your_root_password
+MYSQL_DATABASE=mydb
+MYSQL_USER=user
+MYSQL_PASSWORD=userpassword
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin_password
+```
 
-### Non-Functional Requirements
+### Project Structure
 
-- Performance
-  - Query response time under 2 seconds for standard reports
-  - Support for concurrent users
-  - Efficient handling of large datasets (5+ years of survey data)
+```
+app/
+├── db/
+│   ├── cleaned-data/        # CSV data files
+│   └── database-init/       # Database initialization scripts
+├── docker-compose.yml       # Docker services configuration
+├── Dockerfile              # Backend service container definition
+├── import_docker.sh        # Data import script
+├── main.py                 # FastAPI application
+├── models.py               # Database models
+├── auth.py                 # Authentication logic
+├── database.py             # Database connection
+└── requirements.txt        # Python dependencies
+```
 
-- Security
-  - Data encryption at rest and in transit
-  - Secure authentication mechanisms
+### Setup and Running Instructions
 
-- Scalability
-  - Horizontal scaling capability for increased user load
-  - Modular architecture to support future feature expansion
-  - Performance optimization for growing dataset sizes
+#### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd database-project-stackoverflow-survey-analysis
+```
 
-### Planned Core Entities
+#### 2. Start the Services
+From the `app` directory, run:
+```bash
+docker-compose up --build
+```
 
-- User: Represents a survey respondent.
-  - Attributes: `user_id`, `country`, `age`, `gender`, `education_level`, `employment_status`, `years_of_experience`, etc.
+This command will:
+- Build and start the MySQL database
+- Build and start the FastAPI backend service
+- Import the initial data from CSV files
+- Create an admin account
+- Start the API server on port 8000
 
-- Technology: Represents a programming language, framework, or tool mentioned by users.
-  - Attributes: `tech_id`, `name`, `category` (e.g., language, tool, database)
+#### 3. Verify the Setup
 
-- UserTechnology: Represents a many-to-many relationship between users and technologies they use or want to learn.
-  - Attributes: `user_id`, `tech_id`, `proficiency_level`, `interest_level`
+The backend service will be available at `http://localhost:8000`
 
-- JobPreference: Stores job-seeking preferences and satisfaction.
-  - Attributes: `user_id`, `remote_preference`, `salary_expectation`, `job_satisfaction`, `career_change_interest`
+You can access:
+- API documentation at `http://localhost:8000/docs`
+- Alternative API documentation at `http://localhost:8000/redoc`
 
-- SurveyResponse: Contains general responses not specific to other entities.
-  - Attributes: `response_id`, `user_id`, `question_code`, `answer_text`, `timestamp`
+#### 4. Stopping the Services
 
-- Question: Stores survey questions and metadata.
-  - Attributes: `question_code`, `question_text`, `section`, `question_type`
+To stop all services:
+```bash
+docker-compose down
+```
 
-### Tech Stack
+To stop services and remove volumes (this will delete all data):
+```bash
+docker-compose down -v
+```
 
-- Database
-  - MySQL - Primary relational database
-  - Database design optimized for analytical queries
-  - Stored procedures for complex analytical operations
+### API Endpoints
 
-- Backend
-  - Python with FastAPI framework
-  - RESTful API architecture
-  - JWT authentication 
-  - Pandas and NumPy for data processing
-  - R for data visualization
+The API provides several endpoints for data analysis and user management. For detailed API documentation, visit:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
-- Frontend
-  - React.js with Material UI components
-  - Chart.js and D3.js for data visualization
-  - Responsive design with CSS Grid and Flexbox
+### Troubleshooting
 
-- Development Tools
-  - Git for version control
-  - Docker for containerization
-  - GitHub Actions for CI/CD
+1. If the database fails to start:
+   - Check if port 3306 is available
+   - Verify MySQL credentials in `.env` file
 
-### Team Members and Roles 
+2. If data import fails:
+   - Check if CSV files are present in `db/cleaned-data/`
+   - Verify file permissions on `import_docker.sh`
 
-| Name          | Primary Role                      | Responsibilities                                                                                              |
-| ------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Tran Tat Hung | Project Lead & Database Developer | Project management, Database design & optimization, SQL queries & stored procedures, Backend API architecture |
-| Dang Duc Dat  | Full-Stack Developer              | Frontend implementation, Backend Python/FastAPI development, Data visualization, Integration & testing        |
+3. If the backend service fails to start:
+   - Check if port 8000 is available
+   - Verify all environment variables are set correctly
 
-### Timeline
+### Development
 
-| Milestone                                        | Deliverables                                                                                | Due Date        |
-|------------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------- |
-| Team registration & topic selection              | Project proposal, README.md, Initial GitHub repository setup                                | Tuesday, May 6  |
-| Peer review (evaluate other teams' proposals)    | Complete project requirements, Functional/Non-functional specs, Draft ERD                   | Tuesday, May 13 |
-| Submit design document (ERD, DDL, task division) | Final ERD, DDL scripts, Database design documentation, Task division                        | Tuesday, May 20 |
-| Final submission & presentation slide            | Complete database implementation, Working web interface, Documentation, Presentation slides | Tuesday, May 27 |
+To make changes to the code:
+1. Modify the relevant files
+2. Rebuild the containers:
+```bash
+docker-compose up --build
+```
+
+### Data Files
+
+The project uses cleaned CSV data files located in `app/db/cleaned-data/`. These files are automatically imported into the database during the initial setup.
 
