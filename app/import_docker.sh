@@ -1,51 +1,42 @@
 #!/bin/bash
 
-echo "Starting CSV data import..."
+# Wait for MySQL to be fully up
+echo "Waiting for MySQL to be ready..."
+while ! mysqladmin ping -h mysql --silent; do
+    sleep 2
+done
 
-# Set MySQL connection variables  
-MYSQL_CMD="mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE"
+# Run add_admin.py to create admin account
+echo "Creating admin account..."
+python db/database-init/add_admin.py
 
-# Enable local file loading
-$MYSQL_CMD -e "SET GLOBAL local_infile = 'ON';"
+# Import CSV files into corresponding tables
+CLEANED_DATA_DIR="db/cleaned-data"
+MYSQL_USER="user"
+MYSQL_PASSWORD="userpassword"
+MYSQL_DATABASE="mydb"
+MYSQL_HOST="mysql"
 
-echo "Importing CSV data..."
-
-# Loop through all CSV files in the directory
-for csv_file in /var/lib/mysql-files/*.csv; do
+for csv_file in $CLEANED_DATA_DIR/*.csv; do
     if [ -f "$csv_file" ]; then
-        # Extract filename without path and extension
-        filename=$(basename "$csv_file" .csv)
-        
-        echo "Importing $filename.csv into table $filename..."
-        
-        # This assumes table name matches CSV filename
-        # Adjust the table name logic if needed
-        $MYSQL_CMD -e "
-        LOAD DATA LOCAL INFILE '$csv_file' 
-        INTO TABLE $filename 
-        FIELDS TERMINATED BY ',' 
-        ENCLOSED BY '\"' 
-        LINES TERMINATED BY '\n' 
-        IGNORE 1 ROWS;" 2>/dev/null
-        
+        # Extract table name from CSV filename (e.g., users.csv -> users)
+        table_name=$(basename "$csv_file" .csv)
+        echo "Importing $csv_file into table $table_name..."
+
+        # Get the header row to determine columns
+        columns=$(head -n 1 "$csv_file" | tr -d '\n' | tr -d '\r')
+
+        # Create LOAD DATA query
+        mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e \
+            "LOAD DATA LOCAL INFILE '$csv_file' INTO TABLE $table_name \
+             FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' \
+             IGNORE 1 LINES ($columns);"
         if [ $? -eq 0 ]; then
-            echo "✓ Successfully imported $filename.csv"
+            echo "Successfully imported $csv_file into $table_name"
         else
-            echo "✗ Failed to import $filename.csv"
+            echo "Error importing $csv_file"
         fi
     fi
 done
 
-echo "CSV import process completed!"
-
-# Show row counts for verification
-echo "Verifying imports - Row counts:"
-for csv_file in /var/lib/mysql-files/*.csv; do
-    if [ -f "$csv_file" ]; then
-        filename=$(basename "$csv_file" .csv)
-        count=$($MYSQL_CMD -e "SELECT COUNT(*) FROM $filename;" 2>/dev/null | tail -n 1)
-        if [ $? -eq 0 ]; then
-            echo "$filename: $count rows"
-        fi
-    fi
-done
+echo "CSV import and admin setup completed."
