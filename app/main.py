@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 import auth
 from charts import get_chart_data
+import audit
 
 
 app = FastAPI()
@@ -169,3 +170,23 @@ def authenticate(user: user_dependency, db:db_dependency):
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Failed')
     return {'User': user}
+
+@app.get('/audit-logs')
+def get_audit_logs(user: user_dependency, db: db_dependency):
+    try:
+        # Check if user has admin role
+        if not auth.get_user_role(user['username'], db):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only administrators can view audit logs"
+            )
+            
+        logs = audit.get_audit_logs()
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content=logs,
+            media_type="application/json",
+            headers={"Content-Type": "application/json"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

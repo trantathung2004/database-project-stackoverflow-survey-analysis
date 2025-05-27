@@ -71,3 +71,27 @@ class RespondentCreate(BaseModel):
 class UpdateAnswerRequest(BaseModel):
     qname: str
     new_answer: str
+
+class ResponseAuditLog(Base):
+    __tablename__ = 'response_audit_log'
+
+    log_id = Column(Integer, primary_key=True, autoincrement=True)
+    response_id = Column(Integer, ForeignKey('Responses.ResponseID'))
+    user_id = Column(Integer, ForeignKey('Users.ID'))
+    action = Column(String(10))  # 'INSERT', 'UPDATE', or 'DELETE'
+    timestamp = Column(String(100))
+    old_value = Column(String(255), nullable=True)
+    new_value = Column(String(255), nullable=True)
+    question_id = Column(Integer, ForeignKey('Questions.QID'))
+
+class AuditLogResponse(BaseModel):
+    log_id: int
+    response_id: int
+    user_id: int
+    action: str
+    timestamp: str
+    old_value: str | None
+    new_value: str | None
+    question_id: int
+    username: str | None = None
+    question_name: str | None = None
