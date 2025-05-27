@@ -1,8 +1,8 @@
 #!/bin/bash
 
-USER="root"
-DB="db_project"
-PASSWORD="dat231259"  # or leave blank to be prompted
+USER=""
+DB=""
+PASSWORD=""  # or leave blank to be prompted
 
 for file in cleaned-data/*.csv; do
   table=$(basename "$file" .csv)
