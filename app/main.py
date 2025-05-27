@@ -106,7 +106,7 @@ def history(user:user_dependency, db:db_dependency):
         query = text("""
             SELECT * FROM v_history_response
             ORDER BY ResponseID DESC
-            LIMIT 10
+            LIMIT 100
         """)
     else:
         query = text(f"""

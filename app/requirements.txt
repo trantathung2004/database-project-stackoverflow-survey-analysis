@@ -6,3 +6,4 @@ fastapi
 uvicorn
 python-dotenv
 python-multipart
+mysql-connector-python==9.0.0

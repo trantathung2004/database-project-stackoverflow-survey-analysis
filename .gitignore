@@ -178,3 +178,5 @@ data/survey_results_public.csv
 
 .vscode/
 db_project.session.sql
+.env
+db/import.sh

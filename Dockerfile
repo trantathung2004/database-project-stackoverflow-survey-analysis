@@ -12,5 +12,5 @@ RUN apt-get update && apt-get install -y \
 COPY app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app/.env app/.env
-COPY app/ app/
+COPY .env .
+COPY app/ /app/

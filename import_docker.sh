@@ -5,22 +5,26 @@ echo "Waiting for MySQL to be ready..."
 while ! mysqladmin ping -h mysql --silent; do
     sleep 2
 done
-
+ls
 # Run create_users_csv.py to generate Users.csv with admin account
 echo "Creating Users.csv with admin account..."
-python db/data_users.py
-source ./path/to/.env
+python3 db/data_users.py
+source .env
 
 # Import CSV files into corresponding tables
 CLEANED_DATA_DIR="app/db/cleaned-data"
 MYSQL_USER="$MYSQL_USER"
-MYSQL_PASSWORD="$MYSQL_PASSWORD"
+MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"
 MYSQL_DATABASE="$MYSQL_DATABASE"
 MYSQL_HOST="$MYSQL_HOST"
-echo "MYSQL_HOST=$MYSQL_HOST"
-echo "MYSQL_USER=$MYSQL_USER"
-echo "MYSQL_PASSWORD=$MYSQL_PASSWORD"
-echo "MYSQL_DATABASE=$MYSQL_DATABASE"
+
+set -e  # exit on error
+
+MYSQL_CMD="mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE"
+
+echo "Running create tables scripts..."
+$MYSQL_CMD < app/db/database-init/create-tables.sql
+
 for csv_file in $CLEANED_DATA_DIR/*.csv; do
     if [ -f "$csv_file" ]; then
         # Extract table name from CSV filename (e.g., Users.csv -> accounts)
@@ -44,5 +48,9 @@ for csv_file in $CLEANED_DATA_DIR/*.csv; do
         fi
     fi
 done
-
-echo "CSV import completed."
+echo "Running other SQL scripts..."
+$MYSQL_CMD < app/db/database-init/set-constraints.sql
+$MYSQL_CMD < app/db/database-init/create-views.sql
+$MYSQL_CMD < app/db/database-init/create-indexes.sql
+$MYSQL_CMD < app/db/database-init/create-procedures.sql
+$MYSQL_CMD < app/db/database-init/create-trigger.sql
