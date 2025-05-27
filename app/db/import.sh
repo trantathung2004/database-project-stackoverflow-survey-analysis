@@ -1,8 +1,9 @@
 #!/bin/bash
 
-USER=""
-DB=""
-PASSWORD=""  # or leave blank to be prompted
+source .env
+USER="$MYSQL_USER"
+DB="$MYSQL_DB"
+PASSWORD="$MYSQL_PASSWORD" 
 
 for file in cleaned-data/*.csv; do
   table=$(basename "$file" .csv)
