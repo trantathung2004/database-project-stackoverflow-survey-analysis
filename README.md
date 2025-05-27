@@ -41,7 +41,7 @@ app/
 
 #### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/trantathung2004/database-project-stackoverflow-survey-analysis
 cd database-project-stackoverflow-survey-analysis
 ```
 
