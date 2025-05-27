@@ -105,7 +105,7 @@ def history(user:user_dependency, db:db_dependency):
         query = text("""
             SELECT * FROM v_history_response
             ORDER BY ResponseID DESC
-            LIMIT 100
+            LIMIT 10
         """)
     else:
         query = text(f"""
@@ -137,6 +137,7 @@ def delete_submission(user: user_dependency, db: db_dependency):
 def update_submission(request: models.UpdateAnswerRequest, 
                         user: user_dependency,
                         db: db_dependency):
+    print(request.model_dump())
     respondent = db.query(models.Respondents).filter_by(UID=user['id']).first()
     basic_info_qname = list(respondent.__dict__.keys())[1:]
     if not respondent:
