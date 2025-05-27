@@ -1,8 +1,9 @@
 #!/bin/bash
 
-USER="root"
-DB="db_project"
-PASSWORD=""  # or leave blank to be prompted
+source .env
+USER="$MYSQL_USER"
+DB="$MYSQL_DB"
+PASSWORD="$MYSQL_PASSWORD" 
 
 for file in app/db/cleaned-data/*.csv; do
   table=$(basename "$file" .csv)
