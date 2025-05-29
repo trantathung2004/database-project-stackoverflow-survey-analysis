@@ -2,15 +2,16 @@ version: '3.8'
 services:
   mysql:
     image: mysql:latest
+    command: --local-infile=1
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_HOST=${MYSQL_HOST}
     volumes:
       - mysql-data:/var/lib/mysql
       - ./db/database-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
     networks:
       - app-network
     healthcheck:
@@ -29,14 +30,12 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     volumes:
-      - .:/app
+      - ./app:/app
     ports:
       - "8000:8000"
     command: >
-      bash -c "./import_docker.sh && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+      bash -c "./import_docker.sh && uvicorn main:app --host 0.0.0.0 --port 8000"
     networks:
       - app-network
 

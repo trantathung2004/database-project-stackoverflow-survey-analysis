@@ -115,6 +115,6 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     
 def get_user_role(username, db):
     user = db.query(Users).filter(Users.username == username).first()
-    if user.role == 'admin':
+    if user.role.strip() == 'admin':
         return True
     return False

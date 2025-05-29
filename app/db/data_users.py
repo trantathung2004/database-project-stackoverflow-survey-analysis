@@ -16,9 +16,9 @@ ALGORITHM = "HS256"
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 hashed_password = bcrypt_context.hash(password)
 
-csv_file = "cleaned-data/Users.csv"
+csv_file = "db/cleaned-data/Users.csv"
 
 with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
-    writer.writerow(["id", "username", "password", "role"])  # CSV header
-    writer.writerow([admin_id, username, hashed_password, role])
+    writer.writerow(["id", "username", "hashedpassword", "role"])  # CSV header
+    writer.writerow([admin_id, username, hashed_password, 'admin'])

@@ -12,18 +12,26 @@ python3 db/data_users.py
 source .env
 
 # Import CSV files into corresponding tables
-CLEANED_DATA_DIR="app/db/cleaned-data"
+CLEANED_DATA_DIR="db/cleaned-data"
 MYSQL_USER="$MYSQL_USER"
 MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"
 MYSQL_DATABASE="$MYSQL_DATABASE"
 MYSQL_HOST="$MYSQL_HOST"
+MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
 
 set -e  # exit on error
+mysql -u root -p"${MYSQL_PASSWORD}"<<-EOSQL
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EOSQL
 
 MYSQL_CMD="mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE"
 
 echo "Running create tables scripts..."
-$MYSQL_CMD < app/db/database-init/create-tables.sql
+$MYSQL_CMD < db/database-init/create-tables.sql
+echo ${MYSQL_ROOT_PASS}
+
 
 for csv_file in $CLEANED_DATA_DIR/*.csv; do
     if [ -f "$csv_file" ]; then
@@ -49,8 +57,8 @@ for csv_file in $CLEANED_DATA_DIR/*.csv; do
     fi
 done
 echo "Running other SQL scripts..."
-$MYSQL_CMD < app/db/database-init/set-constraints.sql
-$MYSQL_CMD < app/db/database-init/create-views.sql
-$MYSQL_CMD < app/db/database-init/create-indexes.sql
-$MYSQL_CMD < app/db/database-init/create-procedures.sql
-$MYSQL_CMD < app/db/database-init/create-trigger.sql
+$MYSQL_CMD < db/database-init/set-constraints.sql
+$MYSQL_CMD < db/database-init/create-views.sql
+$MYSQL_CMD < db/database-init/create-indexes.sql
+$MYSQL_CMD < db/database-init/create-procedures.sql
+$MYSQL_CMD < db/database-init/create-triggers.sql

@@ -15,8 +15,8 @@ BEGIN
             q.QID, 
             SUM(v.num_responses) as total_responses
         FROM v_question_summary v
-        JOIN questions q ON v.QID = q.QID
-        JOIN groupquestions g ON q.GID = g.GID
+        JOIN Questions q ON v.QID = q.QID
+        JOIN GroupQuestions g ON q.GID = g.GID
         WHERE g.GroupQuestion = p_topic
         GROUP BY q.QID
     )
@@ -25,8 +25,8 @@ BEGIN
         v.Answer,
         ROUND((v.num_responses * 100.0 / qt.total_responses), 2) as percentage
     FROM v_question_summary v
-    JOIN questions q ON v.QID = q.QID
-    JOIN groupquestions g ON q.GID = g.GID
+    JOIN Questions q ON v.QID = q.QID
+    JOIN GroupQuestions g ON q.GID = g.GID
     JOIN question_totals qt ON q.QID = qt.QID
     WHERE g.GroupQuestion = p_topic
     ORDER BY 
@@ -52,7 +52,7 @@ BEGIN
     INSERT INTO Respondents (MainBranch, Age, Country, Employment, EdLevel, UID)
     VALUES (p_MainBranch, p_Age, p_Country, p_Employment, p_EdLevel, p_UID);
 
-END //
+END $$
 
 DELIMITER ;
 
